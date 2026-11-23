@@ -14,7 +14,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v7
+        uses: actions/checkout@v7.0.1
         with:
           submodules: 'true'
           fetch-depth: '0'
@@ -49,7 +49,7 @@ jobs:
       - name: Set up GPG keys (bocchi810)
         if: github.actor == 'bocchi810'
         id: import-gpg-bocchi810
-        uses: crazy-max/ghaction-import-gpg@v7
+        uses: crazy-max/ghaction-import-gpg@v7.0.0
         with: 
           gpg_private_key: ${{ secrets.GPG_KEY_BOCCHI810 }}
           passphrase: ${{ secrets.GPG_PASS_BOCCHI810 }}
@@ -59,7 +59,7 @@ jobs:
       - name: save local changes to git & svn (bocchi810)
         if: github.actor == 'bocchi810'
         id: auto-commit-action-bocchi810
-        uses: stefanzweifel/git-auto-commit-action@v7
+        uses: stefanzweifel/git-auto-commit-action@v7.2.1
         with:
           skip_fetch: true
           commit_author: "${{ steps.import-gpg-bocchi810.outputs.name }} <${{ steps.import-gpg-bocchi810.outputs.email }}>"
@@ -71,7 +71,7 @@ jobs:
       - name: save local changes to git & svn
         if: github.actor != 'bocchi810'
         id: auto-commit-action
-        uses: stefanzweifel/git-auto-commit-action@v7
+        uses: stefanzweifel/git-auto-commit-action@v7.2.1
         with:
           skip_fetch: true
           commit_message: gfwlist edited ${{ env.DATE }}
